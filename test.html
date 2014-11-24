@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>jscs</title>
+	<style>
+	*{margin:0;padding:0;list-style:none;}
+	body{padding:100px;}
+	.current{color:#0f0;}
+	.current1{color:#f00;}
+	img {
+		position: absolute;
+		left: 0;
+		cursor: move;
+	}
+	#img1 {
+		top: 100px;
+	}
+	#img2 {
+		top: 200px;
+	}
+	#img3 {
+		top: 300px;
+	}
+	</style>
+</head>
+<body>
+<script>
+(function() {
+	var str = '<p><a href="{0}">{1}</a><span>{2}</span></p>';
+	function fn(str) {
+		this.str = str;
+	}
+	fn.prototype.format = function() {
+		var args = arguments;
+		var rFormat = /\{(\d+)\}/g;
+		return this.str.replace(rFormat, function(a, b) {
+			return args[b];
+		});
+	}
+	console.log(new fn(str).format("http://www.baidu.com", "Alibaba", "Welcome"));
+}());
+</script>	
+</body>
+</html>
